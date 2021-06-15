@@ -1,0 +1,146 @@
+<HTML>
+<HEAD>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<TITLE>Prayer Request Form</TITLE>
+<link rel="stylesheet" type="text/css" href="../rhstyle.css">
+</HEAD>
+<BODY bgcolor="#A7BDFF">
+<h2>
+<font color="#001A66">
+<img border="0" src="../images/Religion%20394.jpg" width="89" height="111" align="left">&nbsp; </font></h2>
+<h2>
+<i><font color="#001A66">&nbsp; Prayer Request Form</font></i></h2>
+<p>
+&nbsp;</p>
+<!--webbot BOT="GeneratedScript" PREVIEW=" " startspan --><script Language="JavaScript" Type="text/javascript"><!--
+function FrontPage_Form1_Validator(theForm)
+{
+
+  if (theForm.ReqDate.value == "")
+  {
+    alert("Please enter a value for the \"ReqDate\" field.");
+    theForm.ReqDate.focus();
+    return (false);
+  }
+
+  if (theForm.ReqDate.value.length > 8)
+  {
+    alert("Please enter at most 8 characters in the \"ReqDate\" field.");
+    theForm.ReqDate.focus();
+    return (false);
+  }
+
+  if (theForm.Contact_FullName.value == "")
+  {
+    alert("Please enter a value for the \"Contact_FullName\" field.");
+    theForm.Contact_FullName.focus();
+    return (false);
+  }
+
+  if (theForm.Contact_HomePhone.value == "")
+  {
+    alert("Please enter a value for the \"Contact_HomePhone\" field.");
+    theForm.Contact_HomePhone.focus();
+    return (false);
+  }
+
+  if (theForm.Contact_HomePhone.value.length > 25)
+  {
+    alert("Please enter at most 25 characters in the \"Contact_HomePhone\" field.");
+    theForm.Contact_HomePhone.focus();
+    return (false);
+  }
+
+  if (theForm.request.value == "")
+  {
+    alert("Please enter a value for the \"request\" field.");
+    theForm.request.focus();
+    return (false);
+  }
+  return (true);
+}
+//--></script><!--webbot BOT="GeneratedScript" endspan --><FORM METHOD="POST" action="../_vti_bin/shtml.dll/forms/prayer_request.htm" onsubmit="return FrontPage_Form1_Validator(this)" language="JavaScript" name="FrontPage_Form1" webbot-action="--WEBBOT-SELF--">
+<!--WEBBOT BOT=SaveResults startspan S-Label-Fields="TRUE" B-Reverse-Chronology="FALSE" S-Email-Format="TEXT/PRE" S-Email-Address="nstann@reginahs.com" B-Email-Label-Fields="TRUE" S-Builtin-Fields
+--><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot bot="SaveResults" endspan i-checksum="43374" -->
+<blockquote>
+	<P class="bodyfont"><b>Date of Request&nbsp;&nbsp; </b>
+	&nbsp;<!--webbot bot="Validation" b-value-required="TRUE" i-maximum-length="8" --><INPUT NAME="ReqDate" SIZE=8 MAXLENGTH=8> <EM>-- mm/dd/yy</EM><BR></P>
+	<P class="bodyfont"><b>Prayer Requested by</b></P>
+	<TABLE width="697" bordercolorlight="#A7BDFF" bordercolordark="#A7BDFF" style="border-color: #A7BDFF">
+		<TR>
+			<TD ALIGN="right" width="110"><b><font color="#001A66">
+			<EM style="font-style: normal">Name</EM></font></b></TD>
+			<TD><!--webbot bot="Validation" b-value-required="TRUE" --><INPUT NAME="Contact_FullName" SIZE=35> </TD>
+		</TR>
+		<TR>
+			<TD ALIGN="right" width="110"><font color="#001A66"><b>
+			<EM style="font-style: normal">Address</EM></b></font></TD>
+			<TD><INPUT NAME="Contact_StreetAddress" SIZE=64> </TD>
+		</TR>
+		<TR>
+			<TD ALIGN="right" width="110"><b><font color="#001A66">Phone</font></b></TD>
+			<TD>
+			<!--webbot bot="Validation" b-value-required="TRUE" i-maximum-length="25" --><INPUT NAME="Contact_HomePhone" SIZE=25 MAXLENGTH=25> </TD>
+		</TR>
+		<TR>
+			<TD ALIGN="right" width="110">&nbsp;</TD>
+			<TD>&nbsp;</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="right" width="110">&nbsp;</TD>
+			<TD><b>Alumnae</b>&nbsp;&nbsp; 
+			<input type="radio" name="Relationship" value="Alumnae">&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Current Parent</b>
+			<input type="radio" name="Relationship" value="Current Parent">&nbsp;&nbsp; <b>Alumnae Parent</b>
+			<input type="radio" name="Relationship" value="Alumnae Parent"></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="right" width="110">&nbsp;</TD>
+			<TD>
+			<p class="bodyfont"><b>Other :</b>
+			<input type="text" name="Other" size="20"></TD>
+		</TR>
+		</TABLE>
+	<p align="left">&nbsp;</p>
+	<table border="1" width="51%" bordercolorlight="#A7BDFF" bordercolordark="#A7BDFF" bgcolor="#A7BDFF" style="border-color: #A7BDFF">
+		<tr>
+			<td valign="top"><b>Prayer Request : </b></td>
+			<td bordercolorlight="#A7BDFF" bordercolordark="#A7BDFF" bgcolor="#A7BDFF">
+			<b><!--webbot bot="Validation" b-value-required="TRUE" --><textarea rows="7" name="request" cols="42"></textarea></b></td>
+		</tr>
+	</table>
+	<p>&nbsp;</p>
+	<table border="1" width="77%" bordercolorlight="#A7BDFF" bordercolordark="#A7BDFF" bgcolor="#A7BDFF" style="border-color: #A7BDFF">
+		<tr>
+			<td><font color="#001A66"><b>*Please announce this request during prayer time at School: </b></font>
+			<b>&nbsp;Yes<input type="radio" value="Yes" checked name="SchoolAnnounce"></b> &nbsp;&nbsp; 
+			<b>No</b>&nbsp;
+		<input type="radio" name="SchoolAnnounce" value="No"></td>
+		</tr>
+		<tr>
+			<td><font color="#001A66"><b>**Please ask for prayers in : </b>
+			</font><b>&nbsp;Alumnae Newsletter</b>
+			<input type="checkbox" name="AlumnaeNewsletter" value="YES">&nbsp;
+		<b>Parent Newsletter</b> 
+			<input type="checkbox" name="ParentNewsletter" value="YES"></td>
+		</tr>
+	</table>&nbsp;<p><a href="mailto:nstann@reginahs.com">
+	<INPUT TYPE=submit VALUE="Submit Form" name="Submit"></a>
+	<INPUT TYPE=reset VALUE="Reset Form"> </p>
+	<p class="bodyfont" style="margin-top: 0; margin-bottom: 0"><i>*This request 
+	will be announced at school prayer time on the&nbsp; next morning</i></p>
+	<p class="bodyfont" style="margin-top: 0; margin-bottom: 0"><i>**This 
+	request will be published in the next newsletter, if applicable, depending 
+	on the date received.</i></p>
+</blockquote>
+</FORM>
+<HR>
+<H5>
+Revised: 
+<!--WEBBOT BOT=TimeStamp
+    S-Type="EDITED"
+    S-Format="%m/%d/%y" startspan
+-->09/17/08<!--webbot bot="TimeStamp" i-checksum="13366" endspan --></H5>
+</BODY>
+</HTML>

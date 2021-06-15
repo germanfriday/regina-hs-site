@@ -1,0 +1,873 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns="http://www.w3.org/TR/REC-html40">
+
+<!-- #BeginTemplate "new%20basic%20template2.dwt" -->
+
+<head>
+<link rel="stylesheet" type="text/css" href="regina%20menu%20long%200810-files/styles_t3za2.css">
+<link rel="stylesheet" type="text/css" href="new%20format%20example%202b-files/styles_t3za2.css">
+<style type="text/css">A#vbUL_t3za2a{display:none}</style>
+<link rel="stylesheet" type="text/css" href="rhstyle.css">
+<link rel="stylesheet" type="text/css" href="index.html">
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+<!-- #BeginEditable "doctitle" -->
+
+
+
+<title>Regina and the Community</title>
+<!-- #EndEditable -->
+<script language="JavaScript">
+/***********************************************
+* Ultimate Fade-In Slideshow (v1.51): © Dynamic Drive (http://www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit http://www.dynamicdrive.com/ for this script and 100s more.
+***********************************************/
+ 
+var regimages=new Array()
+//SET IMAGE PATHS. 
+regimages[0]=["images/slide show/cross country 07 2.jpg", "http://www.cssdrive.com", ""] //image with link syntax
+regimages[1]=["images/slide show/Open Lit_Big Sis 07 017 2.jpg",  "", ""] 
+regimages[2]=["images/slide show/Graduation 2007 new 2.jpg",  "", ""] 
+regimages[3]=["images/slide show/community 2.jpg",  "", ""] 
+regimages[4]=["images/slide show/New School 014 2.jpg",  "", ""] 
+regimages[5]=["images/slide show/Open Lit_Big Sis 07 045 2.jpg",  "", ""] 
+regimages[6]=["images/slide show/softball 4_peat 07 2.jpg",  "", ""] 
+regimages[7]=["images/slide show/New School 012 2.jpg",  "", ""] 
+
+
+ 
+var regbgcolor="#6681D9"
+
+////NO need to edit beyond here/////////////
+ 
+var regpicarray=new Array() //array to cache regshow instances
+var showclear=new Array() //array to cache corresponding clearinterval pointers
+ 
+var dom=(document.getElementById) //modern dom browsers
+var iebrowser=document.all
+ 
+function regshow(theimages, showwidth, showheight, borderwidth, delay, pause, displayorder){
+this.pausecheck=pause
+this.mouseovercheck=0
+this.delay=delay
+this.degree=10 //initial opacity degree (10%)
+this.curimageindex=0
+this.nextimageindex=1
+regpicarray[regpicarray.length]=this
+this.slideshowid=regpicarray.length-1
+this.canvasbase="canvas"+this.slideshowid
+this.curcanvas=this.canvasbase+"_0"
+if (typeof displayorder!="undefined")
+theimages.sort(function() {return 0.5 - Math.random();}) //thanks to Mike (aka Mwinter) :)
+this.theimages=theimages
+this.imageborder=parseInt(borderwidth)
+this.postimages=new Array() //preload images
+for (p=0;p<theimages.length;p++){
+this.postimages[p]=new Image()
+this.postimages[p].src=theimages[p][0]
+}
+ 
+var showwidth=showwidth+this.imageborder*2
+var showheight=showheight+this.imageborder*2
+ 
+if (iebrowser&&dom||dom) //if IE5+ or modern browsers (ie: Firefox)
+document.write('<div id="master'+this.slideshowid+'" style="position:relative;width:'+showwidth+'px;height:'+showheight+'px;overflow:hidden;"><div id="'+this.canvasbase+'_0" style="position:absolute;width:'+showwidth+'px;height:'+showheight+'px;top:0;left:0;filter:progid:DXImageTransform.Microsoft.alpha(opacity=10);opacity:0.1;-moz-opacity:0.1;-khtml-opacity:0.1;background-color:'+regbgcolor+'"></div><div id="'+this.canvasbase+'_1" style="position:absolute;width:'+showwidth+'px;height:'+showheight+'px;top:0;left:0;filter:progid:DXImageTransform.Microsoft.alpha(opacity=10);opacity:0.1;-moz-opacity:0.1;-khtml-opacity:0.1;background-color:'+regbgcolor+'"></div></div>')
+else
+document.write('<div><img name="defaultslide'+this.slideshowid+'" src="'+this.postimages[0].src+'"></div>')
+ 
+if (iebrowser&&dom||dom) //if IE5+ or modern browsers such as Firefox
+this.startit()
+else{
+this.curimageindex++
+setInterval("regpicarray["+this.slideshowid+"].rotateimage()", this.delay)
+}
+}
+
+function fadepic(obj){
+if (obj.degree<100){
+obj.degree+=10
+if (obj.tempobj.filters&&obj.tempobj.filters[0]){
+if (typeof obj.tempobj.filters[0].opacity=="number") //if IE6+
+obj.tempobj.filters[0].opacity=obj.degree
+else //else if IE5.5-
+obj.tempobj.style.filter="alpha(opacity="+obj.degree+")"
+}
+else if (obj.tempobj.style.MozOpacity)
+obj.tempobj.style.MozOpacity=obj.degree/101
+else if (obj.tempobj.style.KhtmlOpacity)
+obj.tempobj.style.KhtmlOpacity=obj.degree/100
+else if (obj.tempobj.style.opacity&&!obj.tempobj.filters)
+obj.tempobj.style.opacity=obj.degree/101
+}
+else{
+clearInterval(showclear[obj.slideshowid])
+obj.nextcanvas=(obj.curcanvas==obj.canvasbase+"_0")? obj.canvasbase+"_0" : obj.canvasbase+"_1"
+obj.tempobj=iebrowser? iebrowser[obj.nextcanvas] : document.getElementById(obj.nextcanvas)
+obj.populateslide(obj.tempobj, obj.nextimageindex)
+obj.nextimageindex=(obj.nextimageindex<obj.postimages.length-1)? obj.nextimageindex+1 : 0
+setTimeout("regpicarray["+obj.slideshowid+"].rotateimage()", obj.delay)
+}
+}
+ 
+regshow.prototype.populateslide=function(picobj, picindex){
+var slideHTML=""
+if (this.theimages[picindex][1]!="") //if associated link exists for image
+slideHTML='<a href="'+this.theimages[picindex][1]+'" target="'+this.theimages[picindex][2]+'">'
+slideHTML+='<img src="'+this.postimages[picindex].src+'" border="'+this.imageborder+'px">'
+if (this.theimages[picindex][1]!="") //if associated link exists for image
+slideHTML+='</a>'
+picobj.innerHTML=slideHTML
+}
+ 
+ 
+regshow.prototype.rotateimage=function(){
+if (this.pausecheck==1) //if pause onMouseover enabled, cache object
+var cacheobj=this
+if (this.mouseovercheck==1)
+setTimeout(function(){cacheobj.rotateimage()}, 100)
+else if (iebrowser&&dom||dom){
+this.resetit()
+var crossobj=this.tempobj=iebrowser? iebrowser[this.curcanvas] : document.getElementById(this.curcanvas)
+crossobj.style.zIndex++
+showclear[this.slideshowid]=setInterval("fadepic(regpicarray["+this.slideshowid+"])",50)
+this.curcanvas=(this.curcanvas==this.canvasbase+"_0")? this.canvasbase+"_1" : this.canvasbase+"_0"
+}
+else{
+var ns4imgobj=document.images['defaultslide'+this.slideshowid]
+ns4imgobj.src=this.postimages[this.curimageindex].src
+}
+this.curimageindex=(this.curimageindex<this.postimages.length-1)? this.curimageindex+1 : 0
+}
+ 
+regshow.prototype.resetit=function(){
+this.degree=10
+var crossobj=iebrowser? iebrowser[this.curcanvas] : document.getElementById(this.curcanvas)
+if (crossobj.filters&&crossobj.filters[0]){
+if (typeof crossobj.filters[0].opacity=="number") //if IE6+
+crossobj.filters(0).opacity=this.degree
+else //else if IE5.5-
+crossobj.style.filter="alpha(opacity="+this.degree+")"
+}
+else if (crossobj.style.MozOpacity)
+crossobj.style.MozOpacity=this.degree/101
+else if (crossobj.style.KhtmlOpacity)
+crossobj.style.KhtmlOpacity=this.degree/100
+else if (crossobj.style.opacity&&!crossobj.filters)
+crossobj.style.opacity=this.degree/101
+}
+ 
+ 
+regshow.prototype.startit=function(){
+var crossobj=iebrowser? iebrowser[this.curcanvas] : document.getElementById(this.curcanvas)
+this.populateslide(crossobj, this.curimageindex)
+if (this.pausecheck==1){ //IF SLIDESHOW SHOULD PAUSE ONMOUSEOVER
+var cacheobj=this
+var crossobjcontainer=iebrowser? iebrowser["master"+this.slideshowid] : document.getElementById("master"+this.slideshowid)
+crossobjcontainer.onmouseover=function(){cacheobj.mouseovercheck=1}
+crossobjcontainer.onmouseout=function(){cacheobj.mouseovercheck=0}
+}
+this.rotateimage()
+}
+
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+</script>
+<!--
+function FP_changeProp() {//v1.0
+ var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+ d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+ ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+ x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+ if(s) eval(s+"=v"); }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+
+function FP_changePropRestore() {//v1.0
+ var d=document,x; if(d.$cpe) { for(i=0; i<d.$cpe.length; i++) { x=d.$cpe[i];
+ if(x.v=="") x.v=""; eval("x."+x.n+"=x.v"); } d.$cpe=null; }
+}
+// -->
+</script>
+
+<!--
+function FP_changeProp() {//v1.0
+ var args=arguments,d=document,i,j,id=args[0],o=FP_getObjectByID(id),s,ao,v,x;
+ d.$cpe=new Array(); if(o) for(i=2; i<args.length; i+=2) { v=args[i+1]; s="o"; 
+ ao=args[i].split("."); for(j=0; j<ao.length; j++) { s+="."+ao[j]; if(null==eval(s)) { 
+  s=null; break; } } x=new Object; x.o=o; x.n=new Array(); x.v=new Array();
+ x.n[x.n.length]=s; eval("x.v[x.v.length]="+s); d.$cpe[d.$cpe.length]=x;
+ if(s) eval(s+"=v"); }
+}
+
+function FP_getObjectByID(id,o) {//v1.0
+ var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
+ else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
+ if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
+ for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
+ f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
+ for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
+ return null;
+}
+function FP_preloadImgs() {//v1.0
+ var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
+ for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+}
+// -->
+</script>
+</head>
+
+<body onload="FP_preloadImgs(/*url*/'buttons/button9.gif', /*url*/'buttons/button8.gif')" bgcolor="#A7BDFF" vlink="#6681D9" alink="#6681D9" link="#6681D9" leftmargin="15" style="color: #6681D9">
+
+<table border="1" width="954" style="border-color: #6681D9; background-color: #6681D9" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="67" bgcolor="#001A66" bordercolorlight="#001A66" bordercolordark="#001A66" align="left">
+		<p>
+		<img border="0" src="images/clip%20art/title%20banner%20short%200209.jpg" width="950" height="67"></td>
+	</tr>
+	<tr>
+		<td height="155" bgcolor="#6681D9" align="center" bordercolorlight="#6681D9" bordercolordark="#6681D9">
+		<img border="0" src="images/new%20banner%200209.jpg" width="954" height="151"></td>
+	</tr>
+	<tr>
+		<td height="27" bgcolor="#6681D9" bordercolorlight="#6681D9" bordercolordark="#6681D9" align="center">
+		<p align="center">
+		<img border="0" src="images/clip%20art/Blue%20transforming%20border.jpg" width="885" height="30"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#D1D9F3" bordercolorlight="#D1D9F3" bordercolordark="#D1D9F3" valign="top" bordercolor="#000099">
+<!-- Begin Vista-Buttons.com -->
+
+<table id="vista-buttons_com_idt3za2" width="0" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right:0px" title ="Home">
+<a href="home.htm" onmouseover='xpe("t3za2o");' onmouseout='xpe("t3za2n");'><img id="xpi_t3za2" src="regina%20menu%20long%200810-files/btt3za2_0.png" name="vbt3za2" width="144" height="30" border="0" alt="Home" /></a></td><td style="padding-right:0px" title ="Prospective Students">
+<a onmouseover='xpe("p3za2o");xpshow("p3za2",0,this);xpsmover(this);' onmouseout='xpsmout(this);'><img id="xpi_p3za2" src="regina%20menu%20long%200810-files/btp3za2_0.png" name="vbp3za2" width="177" height="30" border="0" alt="Prospective Students" /></a><div>
+<ul id="vbUL_p3za2" class="vbULt3za2">
+<li><a title="About Us">About&nbsp;Us</a>
+<ul id="vbUL_u3za2" class="vbULt3za2">
+<li><a href="RHS%20History.htm" title="History of RHS">History&nbsp;of&nbsp;RHS</a></li>
+<li><a href="mission.htm" title="Mission Statement">Mission&nbsp;Statement</a></li>
+<li><a href="traditions.htm" title="Traditions">Traditions</a></li>
+<li><a href="School%20Profile.htm" title="School Profile">School&nbsp;Profile</a></li>
+<li><a title="Parent-To-Parent">Parent-To-Parent</a>
+<ul id="vbUL_v3za2" class="vbULt3za2">
+<li><a href="parent%20to%20parent%201.htm" title="Parent Letter 1">Parent&nbsp;Letter&nbsp;1</a></li>
+<li><a href="parent%20to%20parent%202.htm" title="Parent Letter 2">Parent&nbsp;Letter&nbsp;2</a></li>
+<li><a href="parent%20to%20parent%203.htm" title="Parent Letter 3">Parent&nbsp;Letter&nbsp;3</a></li></ul></li>
+<li><a href="single%20gender.htm" title="Why A Single-Gender School?">Why&nbsp;A&nbsp;Single-Gender&nbsp;School?</a></li>
+<li><a title="Contact Us">Contact&nbsp;Us</a>
+<ul id="vbUL_y3za2" class="vbULt3za2">
+<li><a href="admin%20and%20support.htm" title="Administration & Support">Administration&nbsp;&&nbsp;Support</a></li>
+<li><a href="faculty%20directory.htm" title="Faculty Directory">Faculty&nbsp;Directory</a></li>
+<li><a href="forms/admission_contact_form.htm" title="Request Information" target="_blank">Request&nbsp;Information</a></li></ul></li>
+<li><a href="directions.htm" title="Directions">Directions</a></li></ul></li>
+<li><a title="Admissions">Admissions</a>
+<ul id="vbUL_x3za2" class="vbULt3za2">
+<li><a href="admiss%20Overview.htm" title="Admissions Overview">Admissions&nbsp;Overview</a></li>
+<li><a href="admission%20dates.htm" title="Important Dates">Important&nbsp;Dates</a></li>
+<li><a href="forms/admission_contact_form.htm" title="Request Information" target="_blank">Request&nbsp;Information</a></li>
+<li><a href="tuition.htm" title="Tuition & Fees ">Tuition&nbsp;&&nbsp;Fees&nbsp;</a></li>
+<li><a href="uniform.htm" title="Uniform Information">Uniform&nbsp;Information</a></li>
+<li><a href="pdf%20docs/Application%20for%20Admission.pdf" title="APPLY NOW!" target="_blank">APPLY&nbsp;NOW!</a></li>
+<li><a href="financial%20aid.htm" title="Financial Aid">Financial&nbsp;Aid</a></li>
+<li><a href="pdf%20docs/STUDENT%20PROFILE.pdf" title="Student Profile" target="_blank">Student&nbsp;Profile</a></li>
+<li><a href="directions.htm" title="Directions">Directions</a></li></ul></li>
+<li><a title="Academics">Academics</a>
+<ul id="vbUL_l3za2" class="vbULt3za2">
+<li><a href="Academics%20Overview.htm" title="Academic Overview">Academic&nbsp;Overview</a></li>
+<li><a href="faculty%20directory.htm" title="Faculty Directory">Faculty&nbsp;Directory</a></li>
+<li><a href="pdf%20docs/Curriculum%20Guide%2010-11.pdf" title="Curriculum Guide" target="_blank">Curriculum&nbsp;Guide</a></li>
+<li><a href="school%20profile.htm" title="School Profile">School&nbsp;Profile</a></li>
+<li><a href="graduation%20requirements.htm" title="Graduation Requirements">Graduation&nbsp;Requirements</a></li>
+<li><a href="pdf%20docs/Book%20Order%20Information%202009-10.pdf" title="Book Ordering Information" target="_blank">Book&nbsp;Ordering&nbsp;Information</a></li></ul></li>
+<li><a title="Athletics">Athletics</a>
+<ul id="vbUL_b3za2" class="vbULt3za2">
+<li><a href="athletics%20overview.htm" title="Athletics Overview">Athletics&nbsp;Overview</a></li>
+<li><a href="athschedules.htm" title="Schedules & Scores">Schedules&nbsp;&&nbsp;Scores</a></li>
+<li><a title="Athletics News & Photos">Athletics&nbsp;News&nbsp;&&nbsp;Photos</a>
+<ul id="vbUL_f3za2" class="vbULt3za2">
+<li><a href="fall.htm" title="Fall Sports">Fall&nbsp;Sports</a></li>
+<li><a href="winter.htm" title="Winter Sports">Winter&nbsp;Sports</a></li>
+<li><a href="spring.htm" title="Spring Sports">Spring&nbsp;Sports</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_n3za2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a href="Summer%20Camps.htm" title="Summer Athletic Camps">Summer&nbsp;Athletic&nbsp;Camps</a></li></ul></li>
+<li><a title="Being A Saddlelite">Being&nbsp;A&nbsp;Saddlelite</a>
+<ul id="vbUL_h3za2" class="vbULt3za2">
+<li><a href="traditions.htm" title="Traditions">Traditions</a></li>
+<li><a title="Student Testimonials">Student&nbsp;Testimonials</a></li>
+<li><a title="Clubs">Clubs</a>
+<ul id="vbUL_j3za2" class="vbULt3za2">
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Drama_Club" title="Drama Club" target="_blank">Drama&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Foreign_Language_Club" title="Foreign Language Club" target="_blank">Foreign&nbsp;Language&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Forensics" title="Forensics" target="_blank">Forensics</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/S_T_A_N_D_" title="S.T.A.N.D." target="_blank">S.T.A.N.D.</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Free_the_Children" title="Free the Children" target="_blank">Free&nbsp;the&nbsp;Children</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Christian_Clown_Ministers" title="Christian Clown Ministry" target="_blank">Christian&nbsp;Clown&nbsp;Ministry</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Teens_For_Life" title="Teens for Life" target="_blank">Teens&nbsp;for&nbsp;Life</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Mission" title="Missions Committee" target="_blank">Missions&nbsp;Committee</a></li>
+<li><a title="Video & Mass Communication">Video&nbsp;&&nbsp;Mass&nbsp;Communication</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/NHS" title="National Honor Society" target="_blank">National&nbsp;Honor&nbsp;Society</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/S_A_D_D" title="S.A.D.D." target="_blank">S.A.D.D.</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Science_Club" title="Science Club" target="_blank">Science&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/STUCO" title="Student Council" target="_blank">Student&nbsp;Council</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Campbell_Soup_Labels" title="Campbells Soup Labels Committee" target="_blank">Campbells&nbsp;Soup&nbsp;Labels&nbsp;Committee</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Regina_Blue_Notes_Band" title="Regina Blue Notes Band" target="_blank">Regina&nbsp;Blue&nbsp;Notes&nbsp;Band</a></li></ul></li>
+<li><a href="Student%20Photos.htm" title="Photos">Photos</a></li></ul></li>
+<li><a title="Parents">Parents</a>
+<ul id="vbUL_k3za2" class="vbULt3za2">
+<li><a title="Mothers Guild">Mothers&nbsp;Guild</a>
+<ul id="vbUL_g3za2" class="vbULt3za2">
+<li><a href="rhsmg%20overview.htm" title="Mothers Guild Overview">Mothers&nbsp;Guild&nbsp;Overview</a></li>
+<li><a href="Guild%20Newsletters.htm" title="Guild News">Guild&nbsp;News</a></li>
+<li><a href="Fashion%20Show.htm" title="Fashion Show">Fashion&nbsp;Show</a></li></ul></li>
+<li><a title="Dads' Club">Dads'&nbsp;Club</a>
+<ul id="vbUL_irza2" class="vbULt3za2">
+<li><a href="Dads%20Club%20Overview.htm" title="Dads' Club Overview">Dads'&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="DC%20Events.htm" title="Sponsored Events">Sponsored&nbsp;Events</a></li>
+<li><a href="DC%20Officers.htm" title="Dads' Club Officers">Dads'&nbsp;Club&nbsp;Officers</a></li>
+<li><a href="DC%20Newsletters.htm" title="Dads' Club News">Dads'&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_1rza2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a href="parent%20to%20parent.htm" title="Parent to Parent">Parent&nbsp;to&nbsp;Parent</a></li></ul></li>
+<li><a title="Regina in the Community">Regina&nbsp;in&nbsp;the&nbsp;Community</a>
+<ul id="vbUL_crza2" class="vbULt3za2">
+<li><a href="Regina%20Community.htm" title="News">News</a></li>
+<li><a href="Regina%20Collaborative.htm" title="Regina Business Directory">Regina&nbsp;Business&nbsp;Directory</a></li></ul></li>
+<li><a href="Spirit_Shop.htm" title="Spirit Shop">Spirit&nbsp;Shop</a></li>
+<li><a href="Transportation.htm" title="Transportation">Transportation</a></li></ul></div></td><td style="padding-right:0px" title ="Current Students / Parents">
+<a onmouseover='xpe("o3za2o");xpshow("o3za2",0,this);xpsmover(this);' onmouseout='xpsmout(this);'><img id="xpi_o3za2" src="regina%20menu%20long%200810-files/bto3za2_0.png" name="vbo3za2" width="181" height="30" border="0" alt="Current Students / Parents" /></a><div>
+<ul id="vbUL_o3za2" class="vbULt3za2">
+<li><a title="About Us">About&nbsp;Us</a>
+<ul id="vbUL_drza2" class="vbULt3za2">
+<li><a href="RHS%20History.htm" title="History of RHS">History&nbsp;of&nbsp;RHS</a></li>
+<li><a href="mission.htm" title="Mission Statement">Mission&nbsp;Statement</a></li>
+<li><a href="traditions.htm" title="Traditions">Traditions</a></li>
+<li><a href="School%20Profile.htm" title="School Profile">School&nbsp;Profile</a></li>
+<li><a title="Contact Us">Contact&nbsp;Us</a>
+<ul id="vbUL_7rza2" class="vbULt3za2">
+<li><a href="admin%20and%20support.htm" title="Administration & Support">Administration&nbsp;&&nbsp;Support</a></li>
+<li><a href="faculty%20directory.htm" title="Faculty Directory">Faculty&nbsp;Directory</a></li>
+<li><a href="forms/admission_contact_form.htm" title="Request Information" target="_blank">Request&nbsp;Information</a></li></ul></li></ul></li>
+<li><a title="Academics">Academics</a>
+<ul id="vbUL_qrza2" class="vbULt3za2">
+<li><a href="Academics%20Overview.htm" title="Academic Overview">Academic&nbsp;Overview</a></li>
+<li><a href="faculty%20directory.htm" title="Faculty Directory">Faculty&nbsp;Directory</a></li>
+<li><a href="pdf%20docs/Curriculum%20Guide%2010-11.pdf" title="Curriculum Guide" target="_blank">Curriculum&nbsp;Guide</a></li>
+<li><a href="school%20profile.htm" title="School Profile">School&nbsp;Profile</a></li>
+<li><a href="graduation%20requirements.htm" title="Graduation Requirements">Graduation&nbsp;Requirements</a></li>
+<li><a href="pdf%20docs/Book%20Order%20Information%202009-10.pdf" title="Book Ordering Information" target="_blank">Book&nbsp;Ordering&nbsp;Information</a></li></ul></li>
+<li><a title="Athletics">Athletics</a>
+<ul id="vbUL_mrza2" class="vbULt3za2">
+<li><a href="athletics%20overview.htm" title="Athletics Overview">Athletics&nbsp;Overview</a></li>
+<li><a href="athschedules.htm" title="Schedules & Scores">Schedules&nbsp;&&nbsp;Scores</a></li>
+<li><a title="Athletics News & Photos">Athletics&nbsp;News&nbsp;&&nbsp;Photos</a>
+<ul id="vbUL_5rza2" class="vbULt3za2">
+<li><a href="fall.htm" title="Fall Sports">Fall&nbsp;Sports</a></li>
+<li><a href="winter.htm" title="Winter Sports">Winter&nbsp;Sports</a></li>
+<li><a href="spring.htm" title="Spring Sports">Spring&nbsp;Sports</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_arza2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a href="Summer%20Camps.htm" title="Summer Athletic Camps">Summer&nbsp;Athletic&nbsp;Camps</a></li></ul></li>
+<li><a title="Advancement">Advancement</a>
+<ul id="vbUL_srza2" class="vbULt3za2">
+<li><a href="Advance%20Overview.htm" title="Advancement Overview">Advancement&nbsp;Overview</a></li>
+<li><a href="Advancement%20Goals.htm" title="Goals, Campaigns & Projects">Goals,&nbsp;Campaigns&nbsp;&&nbsp;Projects</a></li>
+<li><a href="Ways%20To%20Give.htm" title="Ways of Giving">Ways&nbsp;of&nbsp;Giving</a></li>
+<li><a href="Volunteer.htm" title="Volunteer">Volunteer</a></li>
+<li><a href="Planned%20Giving.htm" title="Planned Giving">Planned&nbsp;Giving</a></li>
+<li><a href="cal%20raffle%20winners.htm" title="Calendar Raffle Winners">Calendar&nbsp;Raffle&nbsp;Winners</a></li>
+<li><a href="Building%20Our%20Future.htm" title="Building Our Future">Building&nbsp;Our&nbsp;Future</a></li></ul></li>
+<li><a title="Business Office">Business&nbsp;Office</a>
+<ul id="vbUL_3rza2" class="vbULt3za2">
+<li><a href="tuition.htm" title="Tuition & Fees">Tuition&nbsp;&&nbsp;Fees</a></li>
+<li><a href="pdf%20docs/QSP%20Q%20&%20A%20May%2012,%202010.pdf" title="QSP Information" target="_blank">QSP&nbsp;Information</a></li>
+<li><a href="epay.htm" title="Electronic Payments">Electronic&nbsp;Payments</a></li></ul></li>
+<li><a href="financial%20aid.htm" title="Financial Aid">Financial&nbsp;Aid</a></li>
+<li><a title="Guidance">Guidance</a>
+<ul id="vbUL_rrza2" class="vbULt3za2">
+<li><a href="Guidance%20Overview.htm" title="Guidance Overview">Guidance&nbsp;Overview</a></li>
+<li><a href="Guidance%20Team.htm" title="Guidance Team">Guidance&nbsp;Team</a></li>
+<li><a href="Guidance%20Calendar.htm" title="Guidance Calendar">Guidance&nbsp;Calendar</a></li>
+<li><a href="Counselors%20Notes.htm" title="Counselor's Notes">Counselor's&nbsp;Notes</a></li>
+<li><a href="College%20Info.htm" title="College Information">College&nbsp;Information</a></li>
+<li><a href="Career%20Info.htm" title="Career Information">Career&nbsp;Information</a></li>
+<li><a href="pdf%20docs/Curriculum%20Guide%2010-11.pdf" title="Curriculum Guide" target="_blank">Curriculum&nbsp;Guide</a></li>
+<li><a href="School%20Profile.htm" title="School Profile">School&nbsp;Profile</a></li></ul></li>
+<li><a href="Media%20Center.htm" title="Media Center">Media&nbsp;Center</a></li>
+<li><a title="Christian Service">Christian&nbsp;Service</a>
+<ul id="vbUL_6rza2" class="vbULt3za2">
+<li><a href="pdf%20docs/CCS%20-%20Student%20Handbook%20Classes%202009-2011.pdf" title="Classes of 2010-2011 Handbook" target="_blank">Classes&nbsp;of&nbsp;2010-2011&nbsp;Handbook</a></li>
+<li><a href="pdf%20docs/CCS-Student%20Handbook%20Class%20of%202012.pdf" title="Classes of 2012-2013 Handbook" target="_blank">Classes&nbsp;of&nbsp;2012-2013&nbsp;Handbook</a></li>
+<li><a href="pdf%20docs/CCS%20-%20HOURS%20DOCUMENTATION%200708.pdf" title="Hours Documentation Form" target="_blank">Hours&nbsp;Documentation&nbsp;Form</a></li>
+<li><a href="pdf%20docs/Ongoing%20Service%20Recording%20Form.pdf" title="Ongoing Service Recording Form" target="_blank">Ongoing&nbsp;Service&nbsp;Recording&nbsp;Form</a></li>
+<li><a href="Service%20Opps.htm" title="Service Opportunities">Service&nbsp;Opportunities</a></li>
+<li><a href="Campus%20Ministry.htm" title="Campus Ministry">Campus&nbsp;Ministry</a></li>
+<li><a href="forms/prayer_request.htm" title="Prayer Request" target="_blank">Prayer&nbsp;Request</a></li></ul></li>
+<li><a title="Student Life">Student&nbsp;Life</a>
+<ul id="vbUL_2rza2" class="vbULt3za2">
+<li><a title="Clubs">Clubs</a>
+<ul id="vbUL_trza2" class="vbULt3za2">
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Drama_Club" title="Drama Club" target="_blank">Drama&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Foreign_Language_Club" title="Foreign Language Club" target="_blank">Foreign&nbsp;Language&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Forensics" title="Forensics" target="_blank">Forensics</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/S_T_A_N_D_" title="S.T.A.N.D." target="_blank">S.T.A.N.D.</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Free_the_Children" title="Free the Children" target="_blank">Free&nbsp;the&nbsp;Children</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Christian_Clown_Ministers" title="Christian Clown Ministry" target="_blank">Christian&nbsp;Clown&nbsp;Ministry</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Teens_For_Life" title="Teens for Life" target="_blank">Teens&nbsp;for&nbsp;Life</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Mission" title="Missions Committee" target="_blank">Missions&nbsp;Committee</a></li>
+<li><a title="Video & Mass Communication">Video&nbsp;&&nbsp;Mass&nbsp;Communication</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/NHS" title="National Honor Society" target="_blank">National&nbsp;Honor&nbsp;Society</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/S_A_D_D" title="S.A.D.D." target="_blank">S.A.D.D.</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Science_Club" title="Science Club" target="_blank">Science&nbsp;Club</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/STUCO" title="Student Council" target="_blank">Student&nbsp;Council</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Campbell_Soup_Labels" title="Campbells Soup Label Committee" target="_blank">Campbells&nbsp;Soup&nbsp;Label&nbsp;Committee</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Activities/Regina_Blue_Notes_Band" title="Regina Blue Notes Band" target="_blank">Regina&nbsp;Blue&nbsp;Notes&nbsp;Band</a></li></ul></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Grade_Levels/SO" title="Seniors" target="_blank">Seniors</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Grade_Levels/Jr" title="Juniors" target="_blank">Juniors</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Grade_Levels/Class_of_2013" title="Sophomores" target="_blank">Sophomores</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Grade_Levels/FR" title="Freshmen" target="_blank">Freshmen</a></li>
+<li><a href="Student%20Photos.htm" title="Photos">Photos</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Yearbook/Yearbook" title="The Crown Yearbook" target="_blank">The&nbsp;Crown&nbsp;Yearbook</a></li></ul></li>
+<li><a title="Parents">Parents</a>
+<ul id="vbUL_prza2" class="vbULt3za2">
+<li><a title="Mothers Guild">Mothers&nbsp;Guild</a>
+<ul id="vbUL_orza2" class="vbULt3za2">
+<li><a href="rhsmg%20overview.htm" title="Mothers Guild Overview">Mothers&nbsp;Guild&nbsp;Overview</a></li>
+<li><a href="Guild%20Newsletters.htm" title="Guild News">Guild&nbsp;News</a></li>
+<li><a href="Fashion%20Show.htm" title="Fashion Show">Fashion&nbsp;Show</a></li></ul></li>
+<li><a title="Dads' Club">Dads'&nbsp;Club</a>
+<ul id="vbUL_wrza2" class="vbULt3za2">
+<li><a href="Dads%20Club%20Overview.htm" title="Dads' Club Overview">Dads'&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="DC%20Events.htm" title="Sponsored Events">Sponsored&nbsp;Events</a></li>
+<li><a href="DC%20Officers.htm" title="Dads' Club Officers">Dads'&nbsp;Club&nbsp;Officers</a></li>
+<li><a href="DC%20Newsletters.htm" title="Dads' Club News">Dads'&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_4rza2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li></ul></li>
+<li><a title="Regina in the Community">Regina&nbsp;in&nbsp;the&nbsp;Community</a>
+<ul id="vbUL_zrza2" class="vbULt3za2">
+<li><a href="Regina%20Community.htm" title="News">News</a></li>
+<li><a href="Regina%20Collaborative.htm" title="Regina Business Directory">Regina&nbsp;Business&nbsp;Directory</a></li></ul></li>
+<li><a href="Spirit_Shop.htm" title="Spirit Shop">Spirit&nbsp;Shop</a></li>
+<li><a href="Transportation.htm" title="Transportation">Transportation</a></li>
+<li><a href="scrip.html" title="Scrip">Scrip</a></li></ul></div></td><td style="padding-right:0px" title ="Alumnae / Friends">
+<a onmouseover='xpe("w3za2o");xpshow("w3za2",0,this);xpsmover(this);' onmouseout='xpsmout(this);'><img id="xpi_w3za2" src="regina%20menu%20long%200810-files/btw3za2_0.png" name="vbw3za2" width="169" height="30" border="0" alt="Alumnae / Friends" /></a><div>
+<ul id="vbUL_w3za2" class="vbULt3za2">
+<li><a title="Alumnae">Alumnae</a>
+<ul id="vbUL_urza2" class="vbULt3za2">
+<li><a href="Alumnae%20Overview.htm" title="Alumnae Overview">Alumnae&nbsp;Overview</a></li>
+<li><a href="pdf%20docs/Alumnae%20Association%20Important%20Dates%20to%20Remember%20for%20the%20webite.pdf" title="Calendar of Events" target="_blank">Calendar&nbsp;of&nbsp;Events</a></li>
+<li><a href="forms/alumnae_update%20new.htm" title="Address / Info Update" target="_blank">Address&nbsp;/&nbsp;Info&nbsp;Update</a></li>
+<li><a href="pdf%20docs/Alumnae%20Membership%20form%202009.pdf" title="Membership Form" target="_blank">Membership&nbsp;Form</a></li>
+<li><a href="alum%20newsletters.htm" title="Saddle Newsletters">Saddle&nbsp;Newsletters</a></li>
+<li><a href="forms/prayer_request.htm" title="Prayer Request" target="_blank">Prayer&nbsp;Request</a></li>
+<li><a href="by-laws.htm" title="By-Laws">By-Laws</a></li>
+<li><a href="alumnae%20photos.htm" title="Event Photos">Event&nbsp;Photos</a></li>
+<li><a href="reunions.htm" title="Reunion Info">Reunion&nbsp;Info</a></li></ul></li>
+<li><a title="Advancement">Advancement</a>
+<ul id="vbUL_vrza2" class="vbULt3za2">
+<li><a href="Advance%20Overview.htm" title="Advancement Overview">Advancement&nbsp;Overview</a></li>
+<li><a href="Advancement%20Goals.htm" title="Goals, Campaigns & Projects">Goals,&nbsp;Campaigns&nbsp;&&nbsp;Projects</a></li>
+<li><a href="Ways%20To%20Give.htm" title="Ways of Giving">Ways&nbsp;of&nbsp;Giving</a></li>
+<li><a href="Volunteer.htm" title="Volunteer">Volunteer</a></li>
+<li><a href="Planned%20Giving.htm" title="Planned Giving">Planned&nbsp;Giving</a></li>
+<li><a href="cal%20raffle%20winners.htm" title="Calendar Raffle Winners">Calendar&nbsp;Raffle&nbsp;Winners</a></li>
+<li><a href="Building%20Our%20Future.htm" title="Building Our Future">Building&nbsp;Our&nbsp;Future</a></li></ul></li>
+<li><a title="Athletics">Athletics</a>
+<ul id="vbUL_yrza2" class="vbULt3za2">
+<li><a href="athletics%20overview.htm" title="Athletics Overview">Athletics&nbsp;Overview</a></li>
+<li><a href="athschedules.htm" title="Schedules & Scores">Schedules&nbsp;&&nbsp;Scores</a></li>
+<li><a title="Athletics News & Photos">Athletics&nbsp;News&nbsp;&&nbsp;Photos</a>
+<ul id="vbUL_xrza2" class="vbULt3za2">
+<li><a href="fall.htm" title="Fall Sports">Fall&nbsp;Sports</a></li>
+<li><a href="winter.htm" title="Winter Sports">Winter&nbsp;Sports</a></li>
+<li><a href="spring.htm" title="Spring Sports">Spring&nbsp;Sports</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_lrza2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li></ul></li>
+<li><a href="Spirit_Shop.htm" title="Spirit Shop">Spirit&nbsp;Shop</a></li>
+<li><a title="Parent Organizations">Parent&nbsp;Organizations</a>
+<ul id="vbUL_brza2" class="vbULt3za2">
+<li><a title="Mothers Guild">Mothers&nbsp;Guild</a>
+<ul id="vbUL_frza2" class="vbULt3za2">
+<li><a href="rhsmg%20overview.htm" title="Mothers Guild Overview">Mothers&nbsp;Guild&nbsp;Overview</a></li>
+<li><a href="Guild%20Newsletters.htm" title="Guild News">Guild&nbsp;News</a></li>
+<li><a href="Fashion%20Show.htm" title="Fashion Show">Fashion&nbsp;Show</a></li></ul></li>
+<li><a title="Dads' Club">Dads'&nbsp;Club</a>
+<ul id="vbUL_nrza2" class="vbULt3za2">
+<li><a href="Dads%20Club%20Overview.htm" title="Dads' Club Overview">Dads'&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="DC%20Events.htm" title="Sponsored Events">Sponsored&nbsp;Events</a></li>
+<li><a href="DC%20Officers.htm" title="Dads' Club Officers">Dads'&nbsp;Club&nbsp;Officers</a></li>
+<li><a href="DC%20Newsletters.htm" title="Dads' Club News">Dads'&nbsp;Club&nbsp;News</a></li></ul></li>
+<li><a title="SPOrTS Club">SPOrTS&nbsp;Club</a>
+<ul id="vbUL_hrza2" class="vbULt3za2">
+<li><a href="Sports%20Club%20Overview.htm" title="SPOrTS Club Overview">SPOrTS&nbsp;Club&nbsp;Overview</a></li>
+<li><a href="SC%20Events.htm" title="Sponsored Activities">Sponsored&nbsp;Activities</a></li>
+<li><a href="SC%20News.htm" title="SPOrTS Club News">SPOrTS&nbsp;Club&nbsp;News</a></li></ul></li></ul></li>
+<li><a title="Regina in the Community">Regina&nbsp;in&nbsp;the&nbsp;Community</a>
+<ul id="vbUL_jrza2" class="vbULt3za2">
+<li><a href="Regina%20Community.htm" title="News">News</a></li>
+<li><a href="Regina%20Collaborative.htm" title="Regina Business Directory">Regina&nbsp;Business&nbsp;Directory</a></li></ul></li>
+<li><a title="Student Life">Student&nbsp;Life</a>
+<ul id="vbUL_krza2" class="vbULt3za2">
+<li><a href="traditions.htm" title="Traditions">Traditions</a></li>
+<li><a title="Student Testimonials">Student&nbsp;Testimonials</a></li>
+<li><a href="Student%20Photos.htm" title="Photos">Photos</a></li></ul></li>
+<li><a title="Contact Us">Contact&nbsp;Us</a>
+<ul id="vbUL_grza2" class="vbULt3za2">
+<li><a href="admin%20and%20support.htm" title="Administration & Support">Administration&nbsp;&&nbsp;Support</a></li>
+<li><a href="faculty%20directory.htm" title="Faculty Directory">Faculty&nbsp;Directory</a></li>
+<li><a href="forms/admission_contact_form.htm" title="Request Information" target="_blank">Request&nbsp;Information</a></li></ul></li>
+<li><a href="directions.htm" title="Directions">Directions</a></li></ul></div></td><td style="padding-right:0px" title ="Edline">
+<a href="http://www.edline.net/pages/ReginaHS" target="_blank" onmouseover='xpe("43za2o");' onmouseout='xpe("43za2n");'><img id="xpi_43za2" src="regina%20menu%20long%200810-files/bt43za2_0.png" name="vb43za2" width="114" height="30" border="0" alt="Edline" /></a></td><td style="padding-right:0px" title ="Calendars">
+<a onmouseover='xpe("z3za2o");xpshow("z3za2",0,this);xpsmover(this);' onmouseout='xpsmout(this);'><img id="xpi_z3za2" src="regina%20menu%20long%200810-files/btz3za2_0.png" name="vbz3za2" width="169" height="30" border="0" alt="Calendars" /></a><div>
+<ul id="vbUL_z3za2" class="vbULt3za2">
+<li><a href="calendarofevents.htm" title="Upcoming Events">Upcoming&nbsp;Events</a></li>
+<li><a href="http://www.edline.net/pages/ReginaHS/Calendar" title="Monthly Calendar" target="_blank">Monthly&nbsp;Calendar</a></li>
+<li><a href="pdf%20docs/Current%20Menu.pdf" title="Lunch Menu" target="_blank">Lunch&nbsp;Menu</a></li>
+<li><a href="pdf%20docs/Yearly%20Calendar%202010-2011.pdf" title="Annual Calendar" target="_blank">Annual&nbsp;Calendar</a></li></ul></div></td></tr></table><script type="text/javascript"> var vbImgPath="regina menu long 0810-files/"</script>
+<script type="text/javascript" src="regina%20menu%20long%200810-files/sct3za2.js"></script>
+<a id="vbUL_t3za2a" href="http://vista-buttons.com">Drop Down Menu Navigation by Vista-Buttons.com v5.0.0</a>
+<!-- End Vista-Buttons.com -->
+		<font face="Times New Roman"><b>
+		<!-- #BeginEditable "pagebody" -->
+		<b>
+		<b>
+		<blockquote>
+			<h2 style="text-align: left; margin-top: 0; margin-bottom: 0">
+			&nbsp;Regina and the Community</h2>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+			<h3><font color="#001A66">Regina Students March for Life in 
+			Washington , D.C. </font></h3>
+			<p class="bodyfont"></p>
+			<p class="bodyfont">Warren, Mich. , (February 2, 2010) – On January 
+			22, 2010 ten members of the Regina High School ’s Teens for Life 
+			group participated in the annual March for Life in Washington , D.C. 
+			The march is a massive display of support for respect for all human 
+			life, from conception to natural death. They joined over 300,000 
+			others, mostly high school and college students, in this annual 
+			peaceful protest of the legalization of abortion. </p>
+			<p class="bodyfont">The students pictured below from left to right, 
+			Catherine Dudun ('13), Samantha Steinmetz ('11), Jillian Wills 
+			('10), Allison Garstecki ('12), Caitlyn Hurley ('11), Alicia Speak 
+			('12), Theresa Rupinski ('12); and Katherine Koueiter ('12), were 
+			amazed to see so many thousands of people united together for one 
+			common purpose--the sanctity of human life. </p>
+			<p class="bodyfont">
+			<img border="0" src="images/walk%204%20life/Walk%20for%20Life%202010%202.JPG" width="511" height="382"></p>
+			<p class="bodyfont">The March for Life began in response to the 1973 
+			Supreme Court decision to de-criminalize abortion, and hundreds of 
+			thousands of pro-life activists have marched to the Supreme Court on 
+			January 22nd every year. </p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+
+						<h3 align="left" style="margin-top: 0; margin-bottom: 0">
+						<font color="#001A66">
+						<a target="_blank" href="pdf%20docs/Timothy%20Awards%202009.pdf">
+						<u><font color="#001A66">The Timothy Awards - Honoring 
+						Youth Leadership</font></u></a></font></h3>
+				<p align="left" style="margin-top: 0; margin-bottom: 0">
+				<a target="_blank" href="pdf%20docs/Timothy%20Awards%202009.pdf">
+				<img border="0" src="images/timothy%20awards.JPG" width="390" height="283"></a></p>
+			</b>
+			<h3 style="text-align: left; margin-top: 0; margin-bottom: 0">
+			&nbsp;</h3>
+			<h3 style="text-align: left; margin-top: 0; margin-bottom: 0">
+			<font color="#001A66">St. Jude Walk</font></h3>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			Photos of Regina Students who participated in the St. Jude Walk - 
+			the walk raised an excess of $14,000 for the children of St. Jude. 
+			The walk was organized for Regina students by Marissa Nichols :</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			<img border="0" src="images/stjude%20walk.JPG" width="467" height="308">&nbsp;&nbsp;
+			<img border="0" src="images/stjude%20walk%202.JPG" width="253" height="309"></p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			Regina graduate Jaclyn Toepel-Hartzell - featured in the June/July 
+			issue of Signature Magazine (Birmingham/Bloomfield area) as one of 
+			seven of the district's best new faculty nominated by their 
+			principals.</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			&nbsp;</p>
+			<p style="text-align: left; margin-top: 0; margin-bottom: 0" class="bodyfont">
+			<img border="0" src="images/jaclyn%20toepel-hartzell.jpg" width="748" height="968"></p>
+			<h3 align="left" class="bodyfont">
+					<font color="#001A66">
+					<a href="#Student_Council_Event_in_the_News"><u>
+					<font color="#001A66">Student Council Event In the News</font></u></a></font></h3>
+			<h6 align="left" class="bodyfont"><u>Regina High School
+					</u>
+					<a href="#PIME MAGAZINE ARTICLE"><font color="#001A66"><u>Featured in PIME Magazine</u></font></a></h6>
+		</blockquote>
+<p align="left" class="bodyfont"></p>
+<blockquote>
+			<h6 align="left" style="margin-top: 0px; margin-bottom: 0px" class="bodyfont">
+				<a href="#REGINA_HIGH_SCHOOL’S_STUDENT_COUNCIL’S_TEDDY_BEAR_COLLECTION_">
+				<font color="#001A66"><u>Teddy Bear Drive</u></font></a></h6>
+			<h6 align="left" style="margin-top: 0px; margin-bottom: 0px" class="bodyfont">
+				&nbsp;</h6>
+			<h6 align="left" style="margin-top: 0px; margin-bottom: 0px" class="bodyfont">
+				<a href="#REGINA_HIGH_SCHOOL’S_NATIONAL_HONOR_SOCIETY_SENDS_PACKAGES_TO_TROOPS_IN_IRAQ_">
+				<font color="#001A66"><u>NHS Packages for Soldiers in Iraq</u></font></a></h6>
+			<h6 align="left" style="margin-top: 0px; margin-bottom: 0px" class="bodyfont">
+				&nbsp;</h6>
+			<h6 align="left" style="margin-top: 0px; margin-bottom: 0px" class="bodyfont">
+				<a href="#REGINA_HIGH_SCHOOL’S_FRENCH_PEN_PEL_PROGRAM_">
+				<font color="#001A66"><u>French Pen Pal Program</u></font></a></h6>
+			<h3><font color="#001A66">
+			<a name="Student_Council_Event_in_the_News">Student Council Event in 
+			the News</a> (An excerpt from the April 20, 2008 Edition of the 
+			Detroit Free Press)</font></h3>
+			<p class="bodyfont">
+			<img border="0" src="images/stuco/leadership%20forum.jpg" width="466" height="247" align="left" hspace="5" vspace="5">St. 
+			Mary's School: 17 middle school students from the Mt. Clemens school 
+			joined the Regina High Student Council for a daylong workshop aimed 
+			at building teamwork, confidence and organizational skills. Students 
+			from Warren De La Salle's student council also came along to run the 
+			event. The participants split into groups for team assignments, 
+			followed by breakout sessions on topics such as teamwork, problem 
+			solving and character building. </p>
+			<p class="bodyfont">All the St. Mary's participants are members of 
+			the Junior Honor Society and student council. </p>
+			<p class="bodyfont">Regina's Lindy Barnes, Gina Valgoi and Juliette 
+			Lacombe planned the activities and ran the event.</p>
+			<p align="left">&nbsp;</p>
+			<h3 align="left"><font color="#001A66">
+			<a name="PIME MAGAZINE ARTICLE">REGINA HIGH SCHOOL FEATURED IN PIME MAGAZINE</a></font></h3>
+			<h3 style="margin-top: 0; margin-bottom: 0" align="left">
+			<font color="#001A66">Keeping the Faith: </font></h3>
+			<h3 style="margin-top: 0; margin-bottom: 0" align="left">
+			<font color="#001A66">Even in a New Location, Regina High School 
+				Maintains Mission Spirit </font></h3>
+			<p style="margin-top: 0; margin-bottom: 0" class="bodyfont"><i>By Hank Forys
+			</i></p>
+			<p class="bodyfont" style="margin-top: 0; margin-bottom: 0"><i>This article was printed in the PIME World magazine for April 
+				2008. </i></p>
+			<p class="bodyfont"></p>
+			<p class="bodyfont">Regina High School , an all-girls 
+				Catholic high school in Warren , Mich. , is continuing its long 
+				tradition of supporting the missionary apostolate of the Church 
+				by having regular collections for the Catholic missions, 
+				especially PIME. </p>
+			<p class="bodyfont">For 50 years, Regina was located in 
+				nearby Harper Woods , and for many of those years, the missions 
+				program was moderated by the late Sr. Mary Beata, a member of 
+				the Sisters of St. Joseph of the Third Order of St. Francis, the 
+				sponsoring order of the school. Sr. Beata, who taught history 
+				and other subjects at Regina , conducted weekly collections and 
+				special contests like “Miss Valentine” and “Miss Shamrock” to 
+				make the collections more fun and increase contributions. </p>
+			<p class="bodyfont">As a result, Regina usually ranked near 
+				the top of schools within the Archdiocese of Detroit in 
+				contributions to the missions. </p>
+			<p class="bodyfont">Last fall, Regina moved to a new location 
+				in Macomb County , where most of its current students reside. 
+				Inspired by the example set by Sr. Beata and under the patronage 
+				of St. Therese of Lisieux, the generosity of Regina ’s students 
+				continues to grow in its new building. To coincide with World 
+				Mission Sunday last October, students participated in the “Miss 
+				Mission” contest. Each third period class selected a candidate 
+				to take up the collection each day for a week. The contestant 
+				who collected the highest average per student was “crowned” Miss 
+				Mission and won a pizza party for her class. This year’s winner 
+				was Abby Markielewicz in Miss Barbara Gerard’s Spanish class. 
+				The class even decided it would donate the cost of the pizza 
+				party! </p>
+			<p class="bodyfont">The school collected more than $1,000, 
+				most of which went to support four PIME Foster Parent Mission 
+				Club children from Bangladesh , Myanmar , India and Thailand , 
+				who were adopted by the Regina family last year. During the 
+				second semester, students contribute to the missions every 
+				Tuesday during religious studies class or at lunch. Various 
+				Catholic missionary groups receive a donation from the proceeds 
+				of these collections. </p>
+			<p class="bodyfont">
+			<img border="0" src="images/PIME2.JPG" width="298" height="178" align="left" hspace="5" vspace="5">Another 
+				good opportunity for the students to support the missions will 
+				take place May 1, when Regina participates in the annual PIME 
+				Day at Shield’s Pizza. The Shield’s Pizza restaurant in Warren 
+				will supply pizza to be sold in the Regina cafeteria and will 
+				donate part of the proceeds to PIME. The restaurant will also 
+				donate a portion of their sales that day to PIME. Ann Hite, a 
+				Regina parent, is coordinating this fundraiser in memory of her 
+				late sister, Bernice Sensini-Ambrose, a PIME supporter and 
+				Shield’s employee. </p>
+			<p class="bodyfont">
+			<img border="0" src="images/PIME1.JPG" width="301" height="196" align="right" hspace="5" vspace="5">Regina 
+				’s support of PIME has led to a strong relationship between the 
+				school and Fr. Guy Snyder, PIME, who has become a sort of 
+				unofficial “chaplain” of the school. Fr. Guy has graciously made 
+				himself available to preside at Regina school and individual 
+				class liturgies. He recently concelebrated the Catholic Schools 
+				Week liturgy with Bishop Daniel E. Flores, the new regional 
+				bishop of the Archdiocese of Detroit. </p>
+			<p class="bodyfont">As Regina continues to pray for and help 
+				support the Catholic missions, we are very grateful for Fr. Guy 
+				and all the good work being accomplished by PIME.</p>
+			<p class="bodyfont">&nbsp;</p>
+				<h3 align="left"><font color="#001A66">
+				<a name="REGINA_HIGH_SCHOOL’S_STUDENT_COUNCIL’S_TEDDY_BEAR_COLLECTION_">
+				REGINA HIGH SCHOOL’S STUDENT COUNCIL’S TEDDY BEAR COLLECTION </a>
+				</font></h3>
+				<p class="bodyfont">
+				<img border="0" src="images/Dec%2007-%20Jan%2008%20020.jpg" width="321" height="241" align="left" hspace="10" vspace="10">Warren, Mich., (December 6, 2007)—The 
+				Regina High School Student Council members have partnered with 
+				Ashley Johnson, a 17 year old cancer patient, to ease the fears 
+				and bring joy to other children in the community with cancer.
+				Bianca 
+				Bartolomei, a sophomore at Regina High School, is the committee 
+				head in charge of this project. “After hearing Ashley’s story 
+				and reading the flyer that was sent to us, the agreement at 
+				Council was overwhelming,” said Bartolomei. Student Council 
+				members have started a competition between lunch periods to 
+				collect teddy bears. 
+				<img border="0" src="images/Dec%2007-%20Jan%2008%20018.jpg" width="296" height="223" align="right" vspace="3">“The lunch period that brings in the most 
+				teddy bears will win: 1) bragging rights, 2) that good feeling 
+				you get when you give to someone in need, and 3) a luncheon 
+				treat provided by Student Council.” “A former alumna of Regina 
+				High School made us aware of Ashley’s wish to provide teddy 
+				bears to children with cancer,” said Mrs. Cathy Zuccaro, 
+				Regina’s Student Council Moderator. The flyer quoted Ashley as 
+				saying, “I know that kids with cancer have a lot of sadness. I 
+				want them to have something special to hug and to hug them back. 
+				I know how scary hospitals are without familiar faces and 
+				friends.” Ashley and her mother will personally deliver the 
+				teddy bears to the Mott Children’s Hospital at the University of 
+				Michigan in Ann Arbor.</p>
+					<h3 align="left">
+					&nbsp;</h3>
+			<h3 align="left">
+					<a name="REGINA_HIGH_SCHOOL’S_NATIONAL_HONOR_SOCIETY_SENDS_PACKAGES_TO_TROOPS_IN_IRAQ_">
+					<font color="#001A66">REGINA HIGH SCHOOL’S NATIONAL HONOR 
+					SOCIETY SENDS PACKAGES TO TROOPS IN IRAQ</font></a></h3>
+					<p align="left" class="bodyfont">
+					<img border="0" src="images/NHS%20Soldiers%20Project%20003.jpg" width="320" height="243" align="left" hspace="10" vspace="10">The Regina High School 
+					National Honor Society members decided to make Christmas a 
+					little brighter for those men and women serving our country 
+					in Iraq. Ms. Carolyn White, NHS moderator, suggested the 
+					project after a friend forwarded an email to her from a 
+					soldier. The 
+					students were very receptive to the idea. Many of the girls 
+					have family or know of people that have family serving in 
+					Iraq. As suggested by the soldiers, the Regina NHS will send 
+					toiletries, such as deodorant, lip balm, shampoo, body wash, 
+					and laundry detergent. Also being sent are Christmas cards 
+					to send to their loved ones, Christmas decorations to boost 
+					morale, and movie DVD’s or Christmas music CD’s. 
+					<img border="0" src="images/NHS%20Soldiers%20Project%20005.jpg" width="352" height="264" align="right" vspace="3">In 
+					addition, the soldiers requested warm, wool hunting socks 
+					and facemasks. Each soldier also received a Christmas 
+					stocking filled with holiday candies as well as homemade 
+					Christmas cards with words of appreciation and best wishes 
+					from the NHS members. Although the soldiers are benefitting 
+					from the packages, the Regina students are as well. “The 
+					girls are excited to see pictures of the soldiers opening 
+					their packages,” said Mrs. Carolyn White, Regina’s NHS 
+					Moderator. An Army field artillery unit will be the 
+					recipients of the packages. “My friend corresponds by email 
+					with this unit and they send pictures every once and awhile. 
+					They promise to do the same for the girls.” </p>
+					<p align="center" class="bodyfont">
+					&nbsp;</p>
+					<h3><a name="REGINA_HIGH_SCHOOL’S_FRENCH_PEN_PEL_PROGRAM_">
+					<font color="#001A66">REGINA HIGH SCHOOL’S FRENCH PEN PEL 
+					PROGRAM</font></a></h3>
+					<p class="bodyfont">
+					<img border="0" src="images/WL-REGINAFRENCH3dj.jpg" width="258" height="362" align="left" hspace="10" vspace="10">The students of Sr. Rose Mary Sam, IHM’s French III 
+					class at Regina High School are participating in a special 
+					pen pal project with a small rural school, in the village of 
+					Charentay, in the south of France. Sr. Sam and one of her 
+					friends, Nadine Jaillardon, initiated the program. Nadine 
+					thought of the idea while working with Sr. Sam in Lourdes, 
+					France over the summer. Sr. Sam thought it was a great idea 
+					because academically, it reinforces the second language 
+					skill, and until now, Sr. Sam had found it difficult to run 
+					a successful one-to- one pen pal project. Students normally 
+					pay companies to link them with a pen pal with usually no 
+					supervision afterward. Sr. Sam and Nadine personally 
+					supervise the program. About a month ago, the French III 
+					class wrote letters partly in French and partly in English 
+					and sent them to Nadine’s students. Nadine’s students were 
+					thrilled with the letters; she in turn matched her students 
+					to their American counterparts. Their letters arrived and 
+					the feelings of excitement were mutual. The students shared 
+					the mix of French and English letters aloud to the class and 
+					even displayed the letters at Regina’s Open House. 
+					<img border="0" src="images/WL-REGINAFRENCH1dj.jpg" width="360" height="259" align="right" hspace="10" vspace="10"></p>
+			<p class="bodyfont">The 
+					interest has now extended to the French IV class and beyond. 
+					A graduate of Nadine’s school is in her 6th year of studying 
+					English and was eager for an American pen pal. Immediately 
+					Erica Podsiadly, a Regina Junior, who has won an award to 
+					attend the Alliance Francaise for her outstanding work three 
+					years in a row, offered to write to her. “We are delighted 
+					with the project and hope to keep it going for years to 
+					come,” said Sr. Sam.</p>
+					<p>&nbsp;</p>
+					<p align="left" class="bodyfont">“Photo by Deb Jacques, 
+					Courtesy of C &amp; G Newspapers.” </p>
+				<h3 align="left"><font color="#001A66">Look Who Followed Us to 
+				Warren!</font></h3>
+				<p align="left" class="bodyfont">
+				<img border="0" src="images/Ducks%2008%20004.jpg" width="488" height="325"></p>
+			
+		</blockquote>
+		</b>
+		<!-- #EndEditable --></b></font>
+		<p align="center"></tr>
+	<tr>
+		<td bgcolor="#001A66" width="994" valign="top" bordercolorlight="#001A66" bordercolordark="#001A66">
+		<h5 style="margin-top: 1px; margin-bottom: 1px; text-align:center" align="center">
+		<b><i><font face="Times New Roman" color="#FFFFFF">Regina High School - 13900 Masonic Blvd. - Warren, Michigan 48088</font></i></b></h5>
+		<h5 style="margin-top: 1px; margin-bottom: 1px; text-align:center" align="center">
+		<b><font face="Times New Roman" color="#FFFFFF"><i>Phone: 586-585-0500 - Fax: 
+			586-585-0507</i></font></b></h5></td>
+	</tr>
+</table>
+<p><b><i><font face="Times New Roman" color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;
+</font></i></b></p>
+
+</body>
+
+<!-- #EndTemplate -->
+
+</html>
+<!-- Localized -->

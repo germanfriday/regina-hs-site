@@ -1,0 +1,101 @@
+#vista-buttons_com_idt3za2 td{font-size:0}
+#vista-buttons_com_idt3za2 td div{position:relative}
+#vista-buttons_com_idt3za2 td:hover>div>ul.vbULt3za2{display:block}
+
+ul.vbULt3za2{
+	left:0;
+	top:0;
+	display:none;
+	visibility: visible;
+	overflow:visible;
+	list-style:none;
+}
+ul.vbULt3za2 li{
+	white-space:nowrap;
+}
+ul.vbULt3za2 ul{
+	position:absolute;
+	visibility: visible;
+	left:100%;
+	top:0;
+}
+ul.vbULt3za2 li:hover{position:relative;}
+ul.vbULt3za2 li:hover>ul{display:block;}
+
+
+.vbULt3za2{
+  position: absolute;
+  visibility: hidden;
+  display: block;
+  overflow: auto;
+  font-size: 1px;
+  margin: 0px;
+}
+div.vbULt3za2, table.vbULt3za2 .subContent,ul.vbULt3za2{
+  border: solid #001A66;
+  border-width: 0px;
+  background-color: #FFFFFF;
+  padding: 2px;
+  opacity:1.00;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+.vbULt3za2 table {
+  border-collapse: separate;
+  border-spacing: 0px;
+}
+.vbULt3za2 table tr,ul.vbULt3za2 li,ul.vbULt3za2 .separator:hover{
+  font-size: 1px;
+  cursor: pointer;
+  background-color: #001A66;  
+}
+.vbULt3za2 tr.over,ul.vbULt3za2 li:hover{
+  background-color: #FFFFFF;
+}
+.vbULt3za2 table td,ul.vbULt3za2 li,ul.vbULt3za2 .separator:hover{
+  border: solid #001A66;
+  border-width: 1px;
+  padding: 3px;
+  text-align: left;
+}
+.vbULt3za2 tr.over td ,ul.vbULt3za2 li:hover{
+  border-color: #001A66;
+}
+.vbULt3za2 td a, .vbULt3za2 td span,ul.vbULt3za2 a{
+  font-family: Tahoma;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: bold;
+  color: #6680D9;
+  text-decoration: none;
+}
+.vbULt3za2 tr.over a, .vbULt3za2 tr.over span{
+  font-family: Tahoma;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: bold;
+  color: #6680D9;
+  text-decoration: none;
+}
+ul.vbULt3za2 li:hover>a{
+  font-family: Tahoma;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: bold;
+  color: #6680D9;
+  text-decoration: none;
+}
+.vbULt3za2 tr.popup {
+  background-color: #FFFFFF;
+}
+.vbULt3za2 tr.popup td {
+  border-color: #001A66;
+}
+.vbULt3za2 tr.popup a, .vbULt3za2 tr.popup a{
+  font-family: Tahoma;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: bold;
+  color: #6680D9;
+  text-decoration: none;
+}
+

@@ -1,0 +1,209 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Regina High School Admissions Office</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+
+</head>
+
+<body>
+<!--webbot BOT="GeneratedScript" PREVIEW=" " startspan --><script Language="JavaScript" Type="text/javascript"><!--
+function FrontPage_Form1_Validator(theForm)
+{
+
+  if (theForm.GradeLevel.value.length > 2)
+  {
+    alert("Please enter at most 2 characters in the \"Grade Level\" field.");
+    theForm.GradeLevel.focus();
+    return (false);
+  }
+
+  var checkOK = "0123456789-.";
+  var checkStr = theForm.GradeLevel.value;
+  var allValid = true;
+  var validGroups = true;
+  var decPoints = 0;
+  var allNum = "";
+  for (i = 0;  i < checkStr.length;  i++)
+  {
+    ch = checkStr.charAt(i);
+    for (j = 0;  j < checkOK.length;  j++)
+      if (ch == checkOK.charAt(j))
+        break;
+    if (j == checkOK.length)
+    {
+      allValid = false;
+      break;
+    }
+    if (ch == ".")
+    {
+      allNum += ".";
+      decPoints++;
+    }
+    else
+      allNum += ch;
+  }
+  if (!allValid)
+  {
+    alert("Please enter only digit characters in the \"Grade Level\" field.");
+    theForm.GradeLevel.focus();
+    return (false);
+  }
+
+  if (decPoints > 1 || !validGroups)
+  {
+    alert("Please enter a valid number in the \"GradeLevel\" field.");
+    theForm.GradeLevel.focus();
+    return (false);
+  }
+
+  var chkVal = allNum;
+  var prsVal = parseFloat(allNum);
+  if (chkVal != "" && !(prsVal > "4" && prsVal <= "11"))
+  {
+    alert("Please enter a value greater than \"4\" and less than or equal to \"11\" in the \"Grade Level\" field.");
+    theForm.GradeLevel.focus();
+    return (false);
+  }
+
+  if (theForm.HomePhone.value == "")
+  {
+    alert("Please enter a value for the \"Home Phone\" field.");
+    theForm.HomePhone.focus();
+    return (false);
+  }
+
+  if (theForm.HomePhone.value.length > 256)
+  {
+    alert("Please enter at most 256 characters in the \"Home Phone\" field.");
+    theForm.HomePhone.focus();
+    return (false);
+  }
+  return (true);
+}
+//--></script><!--webbot BOT="GeneratedScript" endspan --><form method="POST" action="../_vti_bin/shtml.dll/forms/admission_contact_form.htm" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" language="JavaScript" webbot-action="--WEBBOT-SELF--">
+  <!--webbot bot="SaveResults" s-email-format="TEXT/PRE" b-email-label-fields="TRUE" b-email-subject-from-field="FALSE" s-email-subject="Regina Admissions Inquiry" s-builtin-fields s-email-address="czuccaro@reginahs.com" startspan --><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot bot="SaveResults" endspan i-checksum="43374" --><div align="left"><p>
+    <font size="5" color="#0000A0" face="Arial">Regina High School Admissions 
+    Office&nbsp;&nbsp; </font><br>
+  </div> <font color="#0000A0" face="Arial"><big>Contact Request Form</big></font><br>
+  <div align="left">
+      <hr color="#0000A0" size="6"><br>
+  </div>
+  <div align="left"><strong><font face="Arial"><small><font size="1">In the box below,
+  provide Name and Address of student:</font></small></font></strong><br>
+  </div><div align="left"><font face="Arial">
+    <textarea name="StudentAddress" rows="4" cols="50" tabindex="1"></textarea></font></p>
+  </div><div align="left"><small><font color="#0000A0" face="Arial"><strong>Student's current:</strong></font></small></div><div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="73%">
+    <tr>
+      <td width="10%" align="right">
+      <p align="left"><font face="Arial"><small>Grade: </small></font>
+      </td>
+      <td width="190%"><font face="Arial">
+      <!--webbot bot="Validation" s-display-name="Grade Level" s-data-type="Number" s-number-separators="x." i-maximum-length="2" s-validation-constraint="Greater than" s-validation-value="4" s-validation-constraint="Less than or equal to" s-validation-value="11" --><input type="text" name="GradeLevel" size="2" tabindex="2" maxlength="2"></font></td>
+    </tr>
+    <tr>
+      <td width="10%" align="right">
+      <p align="left"><font face="Arial"><small>School: </small> 
+      </font></td>
+      <td width="190%"><font face="Arial"> 
+  <input type="text" name="CurrentSchool" size="40" tabindex="3"></font></td>
+    </tr>
+    <tr>
+      <td width="10%" align="right">
+  <p align="left">
+  <font face="Arial"><small>Parish<font size="3">: </font></small></font></td>
+      <td width="190%">
+  <font face="Arial"> 
+  <input type="text" name="CurrentParish" size="40" tabindex="4"><strong><small><small>(leave blank if non-Catholic)</small></small></strong></font></td>
+    </tr>
+  </table>
+  </div>
+  <p><font face="Arial"><small><strong><font color="#0000A0">I would like information regarding</font> <small><small>(Check
+  all that apply)</small></small><font color="#0000A0">:</font></strong></small></font></p>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="65%">
+    <tr>
+      <td width="100%"><font face="Arial"> <input type="checkbox" name="CKcurriculum" value="ON" tabindex="10"><small>Curriculum<font size="3">&nbsp;
+      </font></small>
+  <input type="checkbox" name="CKtuition" value="ON" tabindex="11"><small>Tuition<font size="3">&nbsp;
+      </font></small>
+  <input type="checkbox" name="CKhspt" value="ON" tabindex="12"><small>High 
+      School Placement Test&nbsp; </small> <input type="checkbox" name="CKathletic" value="ON" tabindex="13"><small>Athletics</small></font></td>
+    </tr>
+  </table>
+  <p><font color="#0000A0" face="Arial"><small><strong>Tell us how to get in touch with you:</strong></small></font></p>
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="439">
+      <tr>
+        <td width="63">&nbsp;</td>
+        <td width="376"><font face="Arial"><small><strong>In the spaces below, enter parent/guardian:</strong></small></font></td>
+      </tr>
+      <tr>
+        <td width="63" align="left"><font face="Arial" color="#000000"><small>Home Tel:
+        </small> </font></td>
+        <td width="376"><font face="Arial">
+        <!--webbot bot="Validation" s-display-name="Home Phone" b-value-required="TRUE" i-maximum-length="256" --><input type="text" size="35" maxlength="256" name="HomePhone" tabindex="14"></font></td>
+      </tr>
+      <tr>
+        <td width="63" align="left"><font face="Arial" color="#000000"><small>Work Tel:
+        </small> </font></td>
+        <td width="376"><font face="Arial"><input type="text" size="35" maxlength="256" name="WorkPhone" tabindex="15"></font></td>
+      </tr>
+      <tr>
+        <td width="63" align="left"><font face="Arial" color="#000000"><small>Email:
+        </small> </font></td>
+        <td width="376"><font face="Arial">    <input type="text" size="35" maxlength="256" name="Email" tabindex="16"></font></td>
+      </tr>
+      <tr>
+        <td width="63" align="left"><font face="Arial" color="#000000"><small>FAX:
+        </small> </font></td>
+        <td width="376"><font face="Arial">      <input type="text" size="35" maxlength="256" name="FAX" tabindex="17"></font></td>
+      </tr>
+  </table>
+  
+      <align="left">
+        <font face="Arial">
+<img border="0" src="../Webs/Graphics/J0115876.GIF" width="490" height="10"></font align="left"></align="left"><div align="left">
+      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="65%">
+        <tr>
+          <td width="100%"><small><font face="Arial"><font color="#000000">If parent 
+      is a Regina Alumnae, indicate year of graduation</font>:
+    &nbsp;
+      <input type="text" name="AlumGradYear" size="5" tabindex="20"></font></small></td>
+        </tr>
+      </table>
+    </div>
+  
+      <align="left">
+        <font face="Arial">
+<img border="0" src="../Webs/Graphics/J0115876.GIF" width="490" height="10"></font align="left"></align="left"><div align="left"><font face="Arial"><small>
+      <strong style="font-weight: 400">Parent name (maiden name if RHS graduate)</strong></font><font size="3"><span style="font-weight: 400"><strong> </strong>
+      </span></font><font face="Arial">
+      <strong style="font-weight: 400">and address <font color="#0000A0">if different</font>
+    from student's.</strong></font></small><br>
+    <font face="Arial"><textarea name="PrntNameAdd" rows="3" cols="42" tabindex="21"></textarea></font></div>
+  <font face="Arial"><input type="checkbox" name="ContactRequested" value="ContactRequested" tabindex="22">
+    <font size="2">Please contact me as soon as possible regarding this matter.</font></font><dl>
+    <dt><font face="Arial"><small><small><strong>&nbsp;Information you submit is 
+    transmitted in non-secure format.</strong></small></small></font></dt>
+  </dl>
+  <h4>
+  <font face="Arial">
+  <a href="mailto:czuccaro@reginahs.com">
+  <input type="submit" value="Submit Information" tabindex="26" name="SubmitForm"></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <input type="reset" value="Clear Form" tabindex="27" name="ClearForm">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </font><font color="#001A66"><a href="../home.htm"><font color="#001A66">Return to Regina homepage</font></a>&nbsp; </font><font face="Arial" size="2">
+	<img border="0" src="../images/crown%20only.GIF" width="53" height="42"></font></h4>
+</form><hr color="#0000A0" size="4">
+
+<h5>
+  
+      <font face="Arial"><br>
+<small><small>Copyright © 1999&nbsp; Regina High School. All rights reserved.<br>
+Revised: <!--webbot bot="TimeStamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->October 16, 2008<!--webbot bot="TimeStamp" i-checksum="30986" endspan --></small></small></font></h5>
+
+</body>
+</html>
+<!-- Localized -->
